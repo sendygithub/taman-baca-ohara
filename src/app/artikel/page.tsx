@@ -1,7 +1,5 @@
 
-"use client";
 import { ArrowRight, BookOpen, Layers, Clock } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
@@ -47,7 +45,31 @@ export default function HomePage() {
         </div>
       </section>
 
-     
+      {/* ================= CATEGORIES ================= */}
+      <section className="bg-muted/40 py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-black mb-10 text-center">
+            Jelajahi Berdasarkan Kategori
+          </h2>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: "Pendidikan", icon: BookOpen },
+              { title: "Budaya", icon: Layers },
+              { title: "Sejarah", icon: Clock },
+              { title: "Literasi", icon: BookOpen },
+            ].map((cat, i) => (
+              <div
+                key={i}
+                className="rounded-3xl p-8 bg-background border border-border text-center hover:scale-105 transition"
+              >
+                <cat.icon className="mx-auto mb-4 size-10 text-primary" />
+                <h3 className="font-bold text-lg">{cat.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ================= LATEST ARTICLES ================= */}
       <section className="container mx-auto px-6 py-24">
@@ -87,28 +109,21 @@ export default function HomePage() {
       </section>
 
       {/* ================= CTA ================= */}
-        <div>
-             <div className="pt-12 border-t-2 border-gray-50 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8 text-foreground/40 dark:text-slate-500 text-sm font-bold">
-                    <p>© 2026 Rumah Kisah Nurmala. Dibuat dengan ❤️ untuk Literasi.</p>
-                    <div className="flex gap-8">
-                        <a href="#" className="hover:text-primary transition-colors">Privasi</a>
-                        <a href="#" className="hover:text-primary transition-colors">Ketentuan</a>
-                        <a href="#" className="hover:text-primary transition-colors">Kontak</a>
-                    </div>
-                    <div className="flex gap-4">
-                        {["𝕏", "IG", "LI", "FB"].map((s) => (
-                            <motion.span
-                                key={s}
-                                whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0], backgroundColor: "#ffd60a", color: "#000" }}
-                                className="w-10 h-10 rounded-2xl bg-gray-50 dark:bg-slate-800 flex items-center justify-center cursor-pointer transition-all border-2 border-gray-100 dark:border-slate-700 font-black shadow-sm"
-                            >
-                                {s}
-                            </motion.span>
-                        ))}
-                    </div>
-                </div>
+      <section className="py-24 bg-primary/10">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            Dukung Literasi & Peradaban
+          </h2>
+          <p className="max-w-xl mx-auto text-foreground/70 mb-10">
+            Donasikan buku atau bagikan artikel untuk menyebarkan ilmu
+            pengetahuan.
+          </p>
+
+          <button className="px-12 py-5 rounded-3xl bg-primary font-black text-xl shadow-lg hover:scale-105 transition">
+            Donasi Buku
+          </button>
         </div>
+      </section>
     </main>
-  
   );
 }
