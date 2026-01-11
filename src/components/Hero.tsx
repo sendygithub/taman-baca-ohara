@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, BookOpen, Heart } from "lucide-react";
+import Link from "next/link";
 
 export const Hero = () => {
     return (
@@ -73,10 +74,17 @@ export const Hero = () => {
                     <motion.button
                         whileHover={{ scale: 1.1, y: -5 }}
                         whileTap={{ scale: 0.9 }}
-                        className="group relative px-10 py-5 bg-primary text-foreground rounded-3xl font-black text-xl shadow-[0_10px_0_0_#ca8a04] hover:shadow-[0_5px_0_0_#ca8a04] hover:translate-y-[5px] transition-all border-2 border-yellow-600 active:shadow-none active:translate-y-[10px]"
+                        className="group relative px-10 py-5 bg-primary text-white rounded-3xl font-black text-xl shadow-[0_10px_0_0_#ca8a04] hover:shadow-[0_5px_0_0_#ca8a04] hover:translate-y-[5px] transition-all border-2 border-yellow-300 active:shadow-none active:translate-y-[10px] text-black dark:text-white"
                     >
                         <span className="flex items-center gap-3">
-                            Ayo Membaca! <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+                            <Link href="/artikel" className="flex items-center gap-3">
+                                <BookOpen size={24} className="group-hover:translate-x-2 transition-transform" />
+                                <span>Baca artikel kami</span>
+                            </Link>
+                            
+                            
+                            <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+
                         </span>
                     </motion.button>
 
