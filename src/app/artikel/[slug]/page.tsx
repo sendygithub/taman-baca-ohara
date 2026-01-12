@@ -38,9 +38,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
          <p>
            Kategori: {article.category}
          </p>
-         <p>
-           Tanggal Terbit: {article.createdAt}
-         </p>
+        
        
      
 

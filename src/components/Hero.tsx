@@ -30,7 +30,7 @@ export const Hero = () => {
                         Rumah Peradaban <motion.span
                             animate={{
                                 color: ["#ffd60a", "#ff006e", "#00bbf9", "#8338ec", "#ffd60a"],
-                                scale: [1, 1.05, 1],
+                                scale: [1, 1.05, 1, 1.05, 1],
                                 rotate: [0, -8, 2, 0]
                             }}
                             transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
@@ -156,10 +156,7 @@ export const Hero = () => {
                         className={`absolute rounded-full blur-2xl ${["bg-primary", "bg-secondary-cyan", "bg-secondary-pink", "bg-accent-emerald", "bg-accent-amber", "bg-primary-violet"][i]
                             }`}
                         style={{
-                            width: Math.random() * 200 + 100,
-                            height: Math.random() * 200 + 100,
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
+                           
                         }}
                     />
                 ))}
