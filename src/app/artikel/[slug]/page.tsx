@@ -56,7 +56,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <button className="flex items-center gap-2">
           <ArrowLeft />
         </button>
-           Kembali ke Artikel
+           Kembali ke Daftar Artikel 
         </Link>
       </div>
 
