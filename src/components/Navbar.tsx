@@ -8,7 +8,7 @@ import Link from "next/link";
 import { DarkModeToggle } from "./DarkModeToggle";
 
 const navLinks = [
-    { name: "Beranda", href: "#" },
+    { name: "Beranda", href: "/" },
     { name: "Tentang", href: "#about" },
     { name: "Program", href: "#services" },
     { name: "Koleksi", href: "#portfolio" },

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
-import { Link } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 interface PageProps {
   params: Promise<{
@@ -32,14 +32,22 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         {article.Judul}
       </h1>
 
-      <p className="text-sm text-foreground/60 mb-8">
-        {article.penulis} · {article.category}
-      </p>
+      <p className="text-sm text-foreground/60 mb-3">
+        Nama penulis :{article.penulis}
+         </p>
+         <p>
+           Kategori: {article.category}
+         </p>
+         <p>
+           Tanggal Terbit: {article.createdAt}
+         </p>
+       
+     
 
       {article.coverImage && (
         <Image
-          width={1000}
-          height={500}
+          width={600}
+          height={300}
           src={article.coverImage}
           alt={article.Judul}
           className="rounded-3xl mb-10"
@@ -48,13 +56,19 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
       <div className="prose prose-lg dark:prose-invert">
         {article.artikel}
+
+
+        <Link href="/artikel" className="flex items-center gap-2 mt-10 hover:underline-bg-yellow-400 bg-yellow-500 text-white py-2 px-4 rounded-full w-fit">
+        <button className="flex items-center gap-2">
+          <ArrowLeft />
+        </button>
+           Kembali ke Artikel
+        </Link>
       </div>
 
       <div>
 
-        <Link href="/artikel" className="flex items-center gap-2 mt-10 hover:underline">
-          <ArrowRight /> Kembali ke Artikel
-        </Link>
+        
       </div>
     </article>
 

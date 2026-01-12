@@ -1,17 +1,19 @@
 import { ArrowRight, BookOpen, Layers, Clock } from "lucide-react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import Image from "next/image";
 
 export default async function HomePage() {
   // ✅ Ambil artikel TERBARU untuk homepage
   const articles = await prisma.article.findMany({
     orderBy: { createdAt: "desc" },
-    take: 4,
+    take: 5,
     select: {
       Judul: true,
       slug: true,
       artikel: true,
       createdAt: true,
+      coverImage: true,
     },
   });
 
@@ -22,7 +24,7 @@ export default async function HomePage() {
       <section className="container mx-auto px-6 py-24">
         <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Artikel Unggulan
+            Artikel Terbaru
           </h2>
           <p className="text-foreground/70 max-w-2xl mx-auto">
             Bacaan pilihan yang dikurasi untuk memperluas wawasan dan literasi.
@@ -37,7 +39,18 @@ export default async function HomePage() {
               className="group rounded-3xl border border-border bg-background p-6 hover:shadow-xl transition block"
             >
               <div className="mb-4 h-40 rounded-2xl bg-primary/10 flex items-center justify-center">
-                <BookOpen className="size-16 text-primary/60" />
+                {/* <BookOpen className="size-16 text-primary/60" /> */}
+                {/* {article.coverImage} */}
+                {article.coverImage && (
+                  <Image
+                    src={article.coverImage}
+                    alt={article.Judul}
+                    width={300}
+                    height={800}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                )}
+                
               </div>
 
               <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">
@@ -84,17 +97,29 @@ export default async function HomePage() {
       </section>
 
       {/* ================= LATEST ARTICLES ================= */}
-      <section className="container mx-auto px-6 py-24">
-        <h2 className="text-4xl font-black mb-10">Artikel Terbaru</h2>
+      <section className="container mx-auto px-6 py-29">
+        <h2 className="text-4xl font-black mb-10">Daftar Artikel</h2>
 
-        <div className="space-y-6">
+        <div className="space-y-6 ">
           {articles.map((article) => (
             <Link
               key={article.slug}
               href={`/artikel/${article.slug}`}
               className="flex gap-6 p-6 rounded-3xl border border-border hover:bg-muted/30 transition"
             >
-              <div className="h-32 w-48 rounded-2xl bg-primary/10" />
+
+              <div className="h-32 w-48 rounded-2xl overflow-hidden flex-shrink-0">
+                {article.coverImage && (
+                  <Image
+                    src={article.coverImage}
+                    alt={article.Judul}
+                    width={300}
+                    height={800}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+              
 
               <div>
                 <h3 className="text-xl font-bold mb-2">
