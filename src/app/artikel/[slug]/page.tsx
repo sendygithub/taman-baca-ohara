@@ -38,10 +38,6 @@ export default async function ArticleDetailPage({ params }: PageProps) {
          <p>
            Kategori: {article.category}
          </p>
-        
-       
-     
-
       {article.coverImage && (
         <Image
           width={600}
@@ -52,7 +48,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         />
       )}
 
-      <div className="prose prose-lg dark:prose-invert">
+      <div className="prose prose-lg dark:prose-invert max-w-none ">
         {article.artikel}
 
 
