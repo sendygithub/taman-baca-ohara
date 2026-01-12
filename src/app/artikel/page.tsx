@@ -1,11 +1,22 @@
-
 import { ArrowRight, BookOpen, Layers, Clock } from "lucide-react";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
 
-export default function HomePage() {
+export default async function HomePage() {
+  // ✅ Ambil artikel TERBARU untuk homepage
+  const articles = await prisma.article.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 4,
+    select: {
+      Judul: true,
+      slug: true,
+      artikel: true,
+      createdAt: true,
+    },
+  });
+
   return (
     <main className="flex flex-col">
-      {/* ================= HERO ================= */}
-
 
       {/* ================= FEATURED ARTICLES ================= */}
       <section className="container mx-auto px-6 py-24">
@@ -19,28 +30,29 @@ export default function HomePage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((item) => (
-            <article
-              key={item}
-              className="group rounded-3xl border border-border bg-background p-6 hover:shadow-xl transition"
+          {articles.slice(0, 3).map((article) => (
+            <Link
+              key={article.slug}
+              href={`/artikel/${article.slug}`}
+              className="group rounded-3xl border border-border bg-background p-6 hover:shadow-xl transition block"
             >
               <div className="mb-4 h-40 rounded-2xl bg-primary/10 flex items-center justify-center">
                 <BookOpen className="size-16 text-primary/60" />
               </div>
 
               <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">
-                Judul Artikel Unggulan
+                {article.Judul}
               </h3>
 
               <p className="text-sm text-foreground/70 mb-4">
-                Ringkasan singkat artikel untuk menarik minat pembaca.
+                {article.artikel.slice(0, 120)}...
               </p>
 
               <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
                 Baca Selengkapnya
                 <ArrowRight size={16} />
               </span>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -73,57 +85,30 @@ export default function HomePage() {
 
       {/* ================= LATEST ARTICLES ================= */}
       <section className="container mx-auto px-6 py-24">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-4xl font-black">Artikel Terbaru</h2>
-          <a
-            href="/artikel"
-            className="inline-flex items-center gap-2 font-semibold text-primary"
-          >
-            Lihat Semua
-            <ArrowRight size={18} />
-          </a>
-        </div>
+        <h2 className="text-4xl font-black mb-10">Artikel Terbaru</h2>
 
         <div className="space-y-6">
-          {[1, 2, 3, 4].map((item) => (
-            <article
-              key={item}
-              className="flex flex-col md:flex-row gap-6 p-6 rounded-3xl border border-border hover:bg-muted/30 transition"
+          {articles.map((article) => (
+            <Link
+              key={article.slug}
+              href={`/artikel/${article.slug}`}
+              className="flex gap-6 p-6 rounded-3xl border border-border hover:bg-muted/30 transition"
             >
-              <div className="h-32 w-full md:w-48 rounded-2xl bg-primary/10" />
+              <div className="h-32 w-48 rounded-2xl bg-primary/10" />
 
-              <div className="flex-1">
+              <div>
                 <h3 className="text-xl font-bold mb-2">
-                  Judul Artikel Terbaru
+                  {article.Judul}
                 </h3>
-                <p className="text-sm text-foreground/70 mb-3">
-                  Deskripsi singkat artikel terbaru untuk preview pembaca.
+                <p className="text-sm text-foreground/70">
+                  {article.artikel.slice(0, 150)}...
                 </p>
-                <span className="text-xs text-foreground/50">
-                  12 Januari 2026 · 5 menit baca
-                </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
-      <section className="py-24 bg-primary/10">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Dukung Literasi & Peradaban
-          </h2>
-          <p className="max-w-xl mx-auto text-foreground/70 mb-10">
-            Donasikan buku atau bagikan artikel untuk menyebarkan ilmu
-            pengetahuan.
-          </p>
-
-          <button className="px-12 py-5 rounded-3xl bg-primary font-black text-xl shadow-lg hover:scale-105 transition">
-            Donasi Buku
-          </button>
-        </div>
-      </section>
     </main>
   );
 }

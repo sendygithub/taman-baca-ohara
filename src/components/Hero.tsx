@@ -79,7 +79,7 @@ export const Hero = () => {
                         <span className="flex items-center gap-3">
                             <Link href="/artikel" className="flex items-center gap-3">
                                 <BookOpen size={24} className="group-hover:translate-x-2 transition-transform" />
-                                <Link href={"/src/app/artikel"}>
+                                <Link href={"/artikel"}>
                                 Baca Artikel kami
                                 </Link>
                             </Link>

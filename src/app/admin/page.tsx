@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function AdminArtikelPage() {
@@ -11,7 +12,7 @@ export default function AdminArtikelPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    const res = await fetch("/api/admin/artikel", {
+    const res = await fetch("/api/artikel", {
       method: "POST",
       body: JSON.stringify({
         Judul: formData.get("Judul"),
@@ -70,12 +71,16 @@ export default function AdminArtikelPage() {
           className="w-full p-4 rounded-xl border"
         />
 
-        <input
+        <select
           name="category"
-          placeholder="Kategori (contoh: Pendidikan)"
-          required
-          className="w-full p-4 rounded-xl border"
-        />
+          className=" p-4 rounded-xl border bg-blue  hover:bg-gray-500 dark:hover:bg-slate-700"
+        >
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Pendidikan">Pendidikan</option>
+        </select>
 
         <textarea
           name="artikel"
@@ -87,10 +92,20 @@ export default function AdminArtikelPage() {
 
         <button
           disabled={loading}
-          className="px-8 py-4 rounded-xl bg-primary font-bold text-white disabled:opacity-50"
+          className="px-10 py-4 rounded-xl bg-blue font-bold text-primary border border-primary bg-transparent hover:bg-yellow-500 hover:text-white transition duration-300"
         >
           {loading ? "Menyimpan..." : "Publish Artikel"}
         </button>
+
+        <button
+          type="reset"
+          className="px-10 py-4 rounded-xl bg-blue font-bold text-primary border border-primary bg-transparent hover:bg-red-500 hover:text-white transition duration-300"
+        >
+          Reset
+        </button>
+
+
+        <Link href="/artikel" className="px-10 py-4 rounded-xl bg-blue font-bold text-primary border border-primary bg-transparent hover:bg-blue-500 hover:text-white transition duration-300">Kembali</Link>
       </form>
     </main>
   );
