@@ -52,7 +52,7 @@ export default function AdminArtikelPage() {
         />
 
         <input
-          name="slug"
+          name="slug (contoh : artikel-1, artikel-2, artikel-3)"
           placeholder="slug-artikel"
           required
           className="w-full p-4 rounded-xl border"
@@ -61,7 +61,7 @@ export default function AdminArtikelPage() {
        
 
         <input
-          name="coverImage"
+          name="coverImage => https://unsplash.com/id/s/foto/book"
           placeholder="URL Cover Image (opsional)"
           className="w-full p-4 rounded-xl border"
         />
