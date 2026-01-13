@@ -1,6 +1,6 @@
 import { ArrowRight, BookOpen, Layers, Clock } from "lucide-react";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../lib/prisma";
 import Image from "next/image";
 
 export default async function HomePage() {
