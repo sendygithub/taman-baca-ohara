@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { ArrowRight, BookOpen, Layers, Clock } from "lucide-react";
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";

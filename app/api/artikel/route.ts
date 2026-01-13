@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../lib/prisma";
+import { revalidatePath } from "next/cache";
+
 /* ===============================
    POST /api/article
 =============================== */
@@ -41,6 +43,7 @@ export async function POST(req: Request) {
         publishTime: publishTime ? new Date(publishTime) : null,
       },
     });
+    revalidatePath("/artikel");
 
     return NextResponse.json(
       { message: "Artikel berhasil dibuat", data },

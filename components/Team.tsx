@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 const team = [
-    { name: "Dian Nurmala", role: "Pendiri & Pembina", image: "/6.jpg" },
+    { name: "Dian Nurmala", role: "Pendiri & Pembina", image:"/6.jpg" },
     { name: "trieana", role: "Pustakawan Utama", image: "/t.jpg" },
     { name: "anggota SNC", role: "Generasi emas", image: "/1.jpeg" },
     { name: "Donatur", role: "dedikasi rezeki untuk bersama", image: "/0.png" },
@@ -20,6 +20,8 @@ const TeamCard = ({ member }: { member: typeof team[0] }) => {
             >
                 <div className="relative aspect-square overflow-hidden rounded-2xl mb-4 border-4 border-gray-50 dark:border-slate-600">
                     <Image
+                        width={500}
+                        height={500}
                         src={member.image}
                         alt={member.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

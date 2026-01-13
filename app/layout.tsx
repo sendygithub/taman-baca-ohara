@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Taman Baca Pelangi | Jendela Dunia Anak",
+  title: "Rumah Peradaban | Jendela Dunia Anak",
   description: "Taman baca modern, ceria, dan interaktif untuk anak-anak Indonesia.",
 };
 
