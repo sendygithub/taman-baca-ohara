@@ -58,6 +58,8 @@ export default function AdminArtikelPage() {
           className="w-full p-4 rounded-xl border"
         />
 
+       
+
         <input
           name="coverImage"
           placeholder="URL Cover Image (opsional)"
@@ -75,16 +77,17 @@ export default function AdminArtikelPage() {
           name="category"
           className=" p-4 rounded-xl border bg-blue  hover:bg-gray-500 dark:hover:bg-slate-700"
         >
-          <option value="Pendidikan">Pendidikan</option>
-          <option value="Pendidikan">Pendidikan</option>
-          <option value="Pendidikan">Pendidikan</option>
-          <option value="Pendidikan">Pendidikan</option>
-          <option value="Pendidikan">Pendidikan</option>
+          <option value="Pendidikan">Edukasi</option>
+          <option value="Pendidikan">Berita</option>
+          <option value="Pendidikan">Blog/Opini</option>
+          <option value="Pendidikan">Tutorial/How To</option>
+          <option value="Pendidikan">Review</option>
+          <option value="Pendidikan">Lainnya</option>
         </select>
 
         <textarea
           name="artikel"
-          placeholder="Isi artikel (HTML / Markdown)"
+          placeholder="Isi artikel . . . . "
           required
           rows={10}
           className="w-full p-4 rounded-xl border"

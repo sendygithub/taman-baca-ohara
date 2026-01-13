@@ -7,7 +7,7 @@ const team = [
     { name: "Dian Nurmala", role: "Pendiri & Pembina", image: "/6.jpg" },
     { name: "trieana", role: "Pustakawan Utama", image: "/t.jpg" },
     { name: "anggota SNC", role: "Generasi emas", image: "/1.jpeg" },
-    { name: "Donatur", role: "dedeikasi rezeki untuk bersama", image: "/0.png" },
+    { name: "Donatur", role: "dedikasi rezeki untuk bersama", image: "/0.png" },
 ];
 
 const TeamCard = ({ member }: { member: typeof team[0] }) => {
