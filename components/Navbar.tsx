@@ -69,7 +69,8 @@ export const Navbar = () => {
                             whileTap={{ scale: 0.95 }}
                             className="bg-primary text-foreground px-6 py-2.5 rounded-2xl font-bold shadow-lg shadow-primary/25 hover:bg-yellow-400 transition-all border-b-4 border-yellow-600 active:border-b-0"
                         >
-                            Ayo Gabung
+                           <Link href="/admin">
+                            <span>Ayo Bergabung</span></Link>
                         </motion.button>
                     </div>
                 </div>
