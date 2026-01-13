@@ -87,7 +87,7 @@ export const About = () => {
                         transition={{ delay: 0.2 }}
                         className="max-w-2xl mx-auto text-xl font-medium text-foreground/70 dark:text-slate-400"
                     >
-                        Merupakan salah satu Rumah baca yang berada di naungan  komunitas SNC (Spirit Nabawiyah Community)  dimana beberapa buku yang terdapat di rumah baca merupakan wakaf dari komunitas SNC tersebut. ✨
+                        Merupakan salah satu Rumah baca yang berada di naungan komunitas SNC (Spirit Nabawiyah Community)  dimana beberapa buku yang terdapat di rumah baca merupakan wakaf dari komunitas SNC tersebut. ✨
                     </motion.p>
                 </div>
 

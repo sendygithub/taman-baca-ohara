@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-
+import Image from "next/image";
 const team = [
     { name: "Dian Nurmala", role: "Pendiri & Pembina", image: "/6.jpg" },
     { name: "trieana", role: "Pustakawan Utama", image: "/t.jpg" },
@@ -20,7 +19,7 @@ const TeamCard = ({ member }: { member: typeof team[0] }) => {
                 className="bg-white dark:bg-slate-800 rounded-[2.5rem] overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-slate-900/50 border-4 border-gray-100 dark:border-slate-700 p-4 transition-all"
             >
                 <div className="relative aspect-square overflow-hidden rounded-2xl mb-4 border-4 border-gray-50 dark:border-slate-600">
-                    <img
+                    <Image
                         src={member.image}
                         alt={member.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
