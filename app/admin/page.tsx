@@ -51,10 +51,21 @@ export default function AdminArtikelPage() {
           className="w-full p-4 rounded-xl border"
         />
 
+        <input
+          name="slug"
+          placeholder="(contoh : artikel-1, artikel-2, artikel-3)"
+          required
+          className="w-full p-4 rounded-xl border"
+        />
+
+
+        <label className="text-xm"> copy image url dari link berikut:
+          <Link href="https://unsplash.com/id/s/foto/book" target="_blank" className="hover:text-yellow-400"> Unsplash source</Link></label>
+
        
 
         <input
-          name="coverImage => https://unsplash.com/id/s/foto/book"
+          name="coverImage"
           placeholder="URL Cover Image (opsional)"
           className="w-full p-4 rounded-xl border"
         />

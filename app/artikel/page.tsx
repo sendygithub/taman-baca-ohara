@@ -13,6 +13,7 @@ export default async function HomePage() {
       Judul: true,
       slug: true,
       artikel: true,
+      penulis: true,
       createdAt: true,
       coverImage: true,
     },
@@ -59,7 +60,8 @@ export default async function HomePage() {
               </h3>
 
               <p className="text-sm text-foreground/70 mb-4">
-                {article.artikel.slice(0, 120)}...
+
+                <h1>penulis : {article.penulis}</h1> {article.artikel.slice(0, 120)}...
               </p>
 
               <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
@@ -129,6 +131,9 @@ export default async function HomePage() {
                 <p className="text-sm text-foreground/70">
                   {article.artikel.slice(0, 150)}...
                 </p>
+               
+                  <h1> created by : {article.penulis.slice(0, 150)} </h1>
+               
               </div>
             </Link>
           ))}

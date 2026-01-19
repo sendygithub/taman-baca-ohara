@@ -32,7 +32,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         {article.Judul}
       </h1>
 
-      <p className="text-sm text-foreground/60 mb-3">
+      <p className="text-sm text-foreground/60 mb-7">
         Nama penulis :{article.penulis}
          </p>
          <p>
@@ -44,11 +44,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           height={300}
           src={article.coverImage}
           alt={article.Judul}
-          className="rounded-3xl mb-10"
+          className="rounded-3xl mb-10 mt-10"
         />
       )}
 
-      <div className="prose prose-lg dark:prose-invert max-w-none ">
+      <div className="prose prose-lg dark:prose-invert max-w-none text-justify mt-8">
         {article.artikel}
 
 
