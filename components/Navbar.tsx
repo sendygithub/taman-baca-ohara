@@ -110,7 +110,7 @@ export const Navbar = () => {
                             ))}
                             <Link href="/login" className="w-full">
                                 <button className="bg-primary text-foreground px-6 py-4 rounded-2xl font-bold w-full mt-2 shadow-lg border-b-4 border-yellow-600 active:border-b-0">
-                                    Ayo Gabung
+                                    Login
                                 </button>
                             </Link>
 
