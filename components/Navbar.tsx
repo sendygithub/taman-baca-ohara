@@ -9,10 +9,11 @@ import { DarkModeToggle } from "./DarkModeToggle";
 
 const navLinks = [
     { name: "Beranda", href: "/" },
-    { name: "Tentang", href: "#about" },
-    { name: "Program", href: "#services" },
-    { name: "Koleksi", href: "#portfolio" },
-    { name: "Kontak", href: "#contact" },
+    { name: "Tentang", href: "/#about" },
+    { name: "Program", href: "/#services" },
+    { name: "Galeri", href: "/gallery" },
+    { name: "Koleksi", href: "/#portfolio" },
+    { name: "Kontak", href: "/#contact" },
 ];
 
 export const Navbar = () => {
@@ -69,8 +70,8 @@ export const Navbar = () => {
                             whileTap={{ scale: 0.95 }}
                             className="bg-primary text-foreground px-6 py-2.5 rounded-2xl font-bold shadow-lg shadow-primary/25 hover:bg-yellow-400 transition-all border-b-4 border-yellow-600 active:border-b-0"
                         >
-                           <Link href="/admin">
-                            <span>Ayo Bergabung</span></Link>
+                            <Link href="/admin">
+                                <span>Ayo Bergabung</span></Link>
                         </motion.button>
                     </div>
                 </div>
@@ -107,9 +108,12 @@ export const Navbar = () => {
                                     {link.name}
                                 </Link>
                             ))}
-                            <button className="bg-primary text-foreground px-6 py-4 rounded-2xl font-bold w-full mt-2 shadow-lg border-b-4 border-yellow-600">
-                                Ayo Gabung
-                            </button>
+                            <Link href="/login" className="w-full">
+                                <button className="bg-primary text-foreground px-6 py-4 rounded-2xl font-bold w-full mt-2 shadow-lg border-b-4 border-yellow-600 active:border-b-0">
+                                    Ayo Gabung
+                                </button>
+                            </Link>
+
                         </div>
                     </motion.div>
                 )}
