@@ -5,15 +5,57 @@ import { useState } from "react";
 import { Book, Mail, Lock, ArrowRight, Github } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [eror, setError]= useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Login attempt:", { email, password });
+        setError("");
+
+        try {
+            fetch("/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.message === "Login berhasil") {
+                        router.push("/admin");
+                    } else {
+                        setError(data.message);
+                    }
+                });
+            
+        } catch (error) {
+
+            console.log(error);
+            
+        }
+
+
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div className="min-h-screen py-24 flex items-center justify-center p-6 relative overflow-hidden">
