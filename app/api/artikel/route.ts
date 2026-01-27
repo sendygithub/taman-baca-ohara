@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       data: {
         Judul,
         slug,
-        coverImage: coverImage || null,
+        coverImage,
         penulis,
         category,
         artikel,

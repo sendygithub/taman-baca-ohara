@@ -1,12 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
- reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ['picsum.photos','images.unsplash.com'], // <-- tambahkan domain gambar eksternal
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'usnh8kbbaik2nkfh.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
-
-  reactCompiler: true,
 };
 
 export default nextConfig;

@@ -21,7 +21,7 @@ model Article {
   id          String    @id @default(cuid())
   Judul       String
   slug        String    @unique
-  coverImage  String?
+  coverImage  String
   publishTime DateTime?
   penulis    String
   category  String
