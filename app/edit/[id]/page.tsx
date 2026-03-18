@@ -19,7 +19,7 @@ import {
 export default function EditArtikelPage() {
   const router = useRouter();
   const params = useParams();
-  const slug = params?.slug as string;
+  const id = params?.id as string;
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -36,7 +36,7 @@ export default function EditArtikelPage() {
   });
 
   useEffect(() => {
-    if (!slug) {
+    if (!id) {
       setLoading(false);
       return;
     }
@@ -44,33 +44,30 @@ export default function EditArtikelPage() {
     async function fetchArticle() {
       try {
         setLoading(true);
-
-        const res = await fetch(`/api/artikel/${slug}`);
-
-        if (!res.ok) {
-          throw new Error("Gagal mengambil data");
-        }
-
+        const res = await fetch(`/api/artikel/${id}`);
         const data = await res.json();
 
-        setFormData({
-          Judul: data?.Judul || "",
-          slug: data?.slug || "",
-          penulis: data?.penulis || "",
-          category: data?.category || "",
-          artikel: data?.artikel || "",
-          coverImage: data?.coverImage || "",
-        });
+        console.log("DATA DARI DATABASE:", data); // LIHAT DI KONSOL BROWSER
+
+        if (data) {
+          setFormData({
+            Judul: data.Judul || "",
+            slug: data.slug || "",
+            penulis: data.penulis || "",
+            category: data.category || "",
+            artikel: data.artikel || "",
+            coverImage: data.coverImage || "",
+          });
+        }
       } catch (err) {
-        console.error(err);
-        router.push("/admin/artikel");
+        console.error("Fetch error:", err);
       } finally {
         setLoading(false);
       }
     }
 
     fetchArticle();
-  }, [slug, router]);
+  }, [id, router]);
 
   async function handleUpdate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -97,7 +94,7 @@ export default function EditArtikelPage() {
         uploadedImageUrl = uploadData.url;
       }
 
-      const res = await fetch(`/api/artikel/${slug}`, {
+      const res = await fetch(`/api/artikel/${id}`, {
         method: "PUT",
         body: JSON.stringify({
           ...formData,
@@ -110,7 +107,7 @@ export default function EditArtikelPage() {
 
       if (res.ok) {
         alert("Artikel berhasil diperbarui ✨");
-        router.push("/admin/artikel");
+        router.push("/tabel");
         router.refresh();
       } else {
         const errorData = await res.json();

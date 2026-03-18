@@ -2,17 +2,20 @@ import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
 
 // ==========================
-// GET ARTIKEL BY SLUG
+// GET ARTIKEL BY ID/SLUG
 // ==========================
-
 export async function GET(
   req: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> }, // Tambahkan Promise di sini
 ) {
   try {
+    // WAJIB di-await di Next.js 15
+    const resolvedParams = await params;
+    const idOrSlug = resolvedParams.slug;
+
     const article = await prisma.article.findUnique({
       where: {
-        id: params.slug,
+        id: idOrSlug, // Mencari berdasarkan ID yang dikirim dari URL
       },
     });
 
@@ -25,29 +28,33 @@ export async function GET(
 
     return NextResponse.json(article);
   } catch (error) {
-    console.error(error);
-
+    console.error("API GET Error:", error);
     return NextResponse.json(
       { message: "Gagal mengambil artikel" },
       { status: 500 },
     );
   }
 }
+
 // ==========================
 // UPDATE ARTIKEL
 // ==========================
 export async function PUT(
   request: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> }, // Tambahkan Promise di sini
 ) {
   try {
-    const body = await request.json();
+    const resolvedParams = await params;
+    const idOrSlug = resolvedParams.slug;
 
+    const body = await request.json();
     const { Judul, slug, penulis, category, artikel, coverImage } = body;
 
     const updatedArticle = await prisma.article.update({
       where: {
-        slug: params.slug,
+        // Gunakan ID (idOrSlug) untuk mencari data yang mau diupdate
+        // karena slug mungkin saja ikut diubah oleh user di form
+        id: idOrSlug,
       },
       data: {
         Judul,
@@ -61,8 +68,7 @@ export async function PUT(
 
     return NextResponse.json(updatedArticle);
   } catch (error) {
-    console.error(error);
-
+    console.error("API PUT Error:", error);
     return NextResponse.json(
       { message: "Gagal memperbarui artikel" },
       { status: 500 },
