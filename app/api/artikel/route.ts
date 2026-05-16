@@ -95,3 +95,38 @@ export async function GET() {
     );
   }
 }
+
+/* ===============================
+   DELETE /api/article?id=xxx
+=============================== */
+export async function DELETE(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { message: "ID diperlukan untuk menghapus" },
+        { status: 400 }
+      );
+    }
+
+    await prisma.article.delete({
+      where: { id },
+    });
+
+    revalidatePath("/artikel");
+    revalidatePath("/database"); // Pastikan revalidate halaman baru juga
+
+    return NextResponse.json(
+      { message: "Artikel berhasil dihapus" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("DELETE /api/article error:", error);
+    return NextResponse.json(
+      { message: "Terjadi kesalahan server saat menghapus" },
+      { status: 500 }
+    );
+  }
+}
